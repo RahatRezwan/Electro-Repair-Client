@@ -31,8 +31,8 @@ const Header = () => {
                      <Link>
                         <Avatar
                            img={
-                              user?.photoUrl
-                                 ? user.photoUrl
+                              user?.photoURL
+                                 ? user.photoURL
                                  : "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png"
                            }
                            rounded={true}

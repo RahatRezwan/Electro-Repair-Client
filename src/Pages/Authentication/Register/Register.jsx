@@ -7,7 +7,7 @@ import loginImg from "../../../assests/loginpage.png";
 import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
 
 const Register = () => {
-   const { createANewUser } = useContext(AuthContext);
+   const { createANewUser, googleLogin } = useContext(AuthContext);
    const [error, setError] = useState(null);
 
    /* handle Registration */
@@ -34,6 +34,17 @@ const Register = () => {
          })
          .catch((e) => console.log(e));
    };
+
+   /* google login */
+   const handleGoogleLogin = () => {
+      googleLogin()
+         .then((result) => {
+            const user = result.user;
+            console.log(user);
+         })
+         .catch((e) => console.log(e));
+   };
+
    return (
       <div className="min-h-screen w-full mx-auto mt-8 flex flex-cols lg:flex-row justify-evenly items-center">
          <div className="w-full flex justify-center">
@@ -125,7 +136,7 @@ const Register = () => {
 
                <p className="text-center">Login With</p>
                <div className="grid grid-cols-2 gap-3">
-                  <Button type="submit">
+                  <Button onClick={handleGoogleLogin} type="">
                      <FaGoogle className="h-5 w-5 mr-2" /> Google
                   </Button>
                   <Button type="submit">
