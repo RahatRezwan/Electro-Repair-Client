@@ -5,10 +5,12 @@ import { FaGoogle, FaFacebook } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import loginImg from "../../../assests/loginpage.png";
 import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
+import useSetTitle from "../../../hooks/useSetTitle";
 
 const Login = () => {
    const { loginAUser, googleLogin } = useContext(AuthContext);
    const [error, setError] = useState(null);
+   useSetTitle("Login");
 
    /* handle login */
    const handleLogin = (event) => {

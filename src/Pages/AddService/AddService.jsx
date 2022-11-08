@@ -1,6 +1,8 @@
 import { Button, Label, Textarea, TextInput } from "flowbite-react";
 import React from "react";
+import useSetTitle from "../../hooks/useSetTitle";
 const AddService = () => {
+   useSetTitle("Add Service");
    const handleAddService = (event) => {
       event.preventDefault();
       const form = event.target;

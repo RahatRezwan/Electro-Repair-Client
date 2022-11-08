@@ -5,10 +5,12 @@ import { GoKey, GoMail } from "react-icons/go";
 import { Link } from "react-router-dom";
 import loginImg from "../../../assests/loginpage.png";
 import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
+import useSetTitle from "../../../hooks/useSetTitle";
 
 const Register = () => {
    const { createANewUser, googleLogin } = useContext(AuthContext);
    const [error, setError] = useState(null);
+   useSetTitle("Register");
 
    /* handle Registration */
    const handleRegister = (event) => {
