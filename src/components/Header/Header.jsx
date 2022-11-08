@@ -1,115 +1,59 @@
+import { Avatar, Button, Navbar } from "flowbite-react";
 import "flowbite";
-import { Avatar } from "flowbite-react";
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
 import logoDark from "../../logoDark.png";
 import logoLight from "../../logoLight.png";
+import { Blogs } from "../../Pages";
+
+const menus = [
+   { name: "Home", url: "/" },
+   { name: "Services", url: "/services" },
+   { name: "Blogs", url: "/blogs" },
+];
 
 const Header = () => {
    const { user } = useContext(AuthContext);
    return (
-      <nav className="bg-white px-2 sm:px-4 py-2.5 dark:bg-gray-900 fixed w-full z-20 top-0 left-0 border-b border-gray-200 dark:border-gray-600">
-         <div className="container flex flex-wrap justify-between items-center mx-auto">
-            <Link href="/" className="flex items-center">
-               <img src={logoLight} className="mr-3 h-9 lg:h-16" alt="Logo" />
+      <Navbar fluid={true} rounded={true} className="sticky top-0 z-[1]">
+         <Navbar.Brand to="https://flowbite.com/">
+            <img src={logoLight} className="mr-3 h-6 sm:h-9 lg:h-16" alt="Flowbite Logo" />
+         </Navbar.Brand>
+         <div className="flex md:order-2">
+            <Link to="/login">
+               <Button>Login</Button>
             </Link>
-            <div className="flex md:order-2">
-               {user?.uid ? (
-                  <>
-                     <Avatar
-                        img="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
-                        rounded={true}
-                     />
-                     <Link
-                        type="button"
-                        className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                     >
-                        Logout
-                     </Link>
-                  </>
-               ) : (
-                  <Link
-                     to="/login"
-                     type="button"
-                     className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                  >
-                     Login
-                  </Link>
-               )}
-
-               <button
-                  data-collapse-toggle="navbar-sticky"
-                  type="button"
-                  className="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-                  aria-controls="navbar-sticky"
-                  aria-expanded="false"
-               >
-                  <svg
-                     className="w-6 h-6"
-                     aria-hidden="true"
-                     fill="currentColor"
-                     viewBox="0 0 20 20"
-                     xmlns="http://www.w3.org/2000/svg"
-                  >
-                     <path
-                        fill-rule="evenodd"
-                        d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
-                        clip-rule="evenodd"
-                     ></path>
-                  </svg>
-               </button>
-            </div>
-            <div
-               className="hidden justify-between items-center w-full md:flex md:w-auto md:order-1"
-               id="navbar-sticky"
-            >
-               <ul className="flex flex-col p-4 mt-4 bg-gray-50 rounded-lg border border-gray-100 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-                  <li>
-                     <Link
-                        href="/"
-                        className="block py-2 pr-4 pl-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white"
-                        aria-current="page"
-                     >
-                        Home
-                     </Link>
-                  </li>
-                  <li>
-                     <Link
-                        href="/services"
-                        className="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
-                     >
-                        Services
-                     </Link>
-                  </li>
-                  <li>
-                     <Link
-                        href="/blogs"
-                        className="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
-                     >
-                        Blogs
-                     </Link>
-                  </li>
-                  <li>
-                     <Link
-                        href="/addService"
-                        className="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
-                     >
-                        Add Service
-                     </Link>
-                  </li>
-                  <li>
-                     <Link
-                        href="/my-reviews"
-                        className="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
-                     >
-                        My Reviews
-                     </Link>
-                  </li>
-               </ul>
-            </div>
+            <Navbar.Toggle />
          </div>
-      </nav>
+         <Navbar.Collapse>
+            {menus.map((menu, index) => (
+               <NavLink
+                  to={menu.url}
+                  key={index}
+                  className={({ isActive }) =>
+                     isActive ? "text-blue-700 text-[17px]" : "text-[16px] hover:text-blue-700"
+                  }
+                  end
+               >
+                  {menu.name}
+               </NavLink>
+            ))}
+            {user?.uid && (
+               <>
+                  <NavLink
+                     to="/addService"
+                     className={({ isActive }) =>
+                        isActive ? "text-blue-700 text-[17px]" : "text-[16px] hover:text-blue-700"
+                     }
+                  >
+                     Add Service
+                  </NavLink>
+                  <NavLink to="/my-reviews">My Reviews</NavLink>
+               </>
+            )}
+         </Navbar.Collapse>
+      </Navbar>
    );
 };
 
