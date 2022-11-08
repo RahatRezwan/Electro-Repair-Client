@@ -1,18 +1,49 @@
 import { Button, Label, TextInput } from "flowbite-react";
-import React from "react";
+import React, { useContext, useState } from "react";
 import { FaFacebook, FaGoogle, FaUser, FaImage } from "react-icons/fa";
 import { GoKey, GoMail } from "react-icons/go";
 import { Link } from "react-router-dom";
 import loginImg from "../../../assests/loginpage.png";
+import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
 
 const Register = () => {
+   const { createANewUser } = useContext(AuthContext);
+   const [error, setError] = useState(null);
+
+   /* handle Registration */
+   const handleRegister = (event) => {
+      setError(null);
+      event.preventDefault();
+      const form = event.target;
+      const fullName = form.name.value;
+      const photoUrl = form.photoUrl.value;
+      const email = form.email.value;
+      const password = form.password.value;
+      if (password.length < 8) {
+         setError("Your password should have at least 8 characters");
+         return;
+      }
+      console.log(fullName, photoUrl, email, password);
+
+      /* create user using firebase email & pass*/
+      createANewUser(email, password)
+         .then((result) => {
+            const user = result.user;
+            form.reset();
+            console.log(user);
+         })
+         .catch((e) => console.log(e));
+   };
    return (
       <div className="min-h-screen w-full mx-auto mt-8 flex flex-cols lg:flex-row justify-evenly items-center">
          <div className="w-full flex justify-center">
             <img src={loginImg} alt="" className="w-50" />
          </div>
          <div className="w-full flex justify-center">
-            <form className="flex flex-col gap-4 border border-gray-300 rounded-md p-[50px] w-[80%]">
+            <form
+               onSubmit={handleRegister}
+               className="flex flex-col gap-4 border border-gray-300 rounded-md p-[50px] w-[80%]"
+            >
                <div>
                   <h1 className="text-3xl text-center">Register</h1>
                </div>
@@ -23,6 +54,7 @@ const Register = () => {
                   <TextInput
                      id="name"
                      type="text"
+                     name="name"
                      placeholder="Your Full Name"
                      required={true}
                      shadow={true}
@@ -36,6 +68,7 @@ const Register = () => {
                   <TextInput
                      id="photoUrl"
                      type="text"
+                     name="photoUrl"
                      placeholder="Your Photo Url"
                      required={true}
                      shadow={true}
@@ -49,6 +82,7 @@ const Register = () => {
                   <TextInput
                      id="email"
                      type="email"
+                     name="email"
                      placeholder="example@email.com"
                      required={true}
                      shadow={true}
@@ -62,11 +96,13 @@ const Register = () => {
                   <TextInput
                      id="password"
                      type="password"
+                     name="password"
                      placeholder="your password"
                      required={true}
                      shadow={true}
                      icon={GoKey}
                   />
+                  <p className="text-[14px] text-red-500">{error}</p>
                </div>
 
                <Button type="submit">Register</Button>
