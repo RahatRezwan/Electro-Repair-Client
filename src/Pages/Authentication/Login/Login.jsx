@@ -76,17 +76,18 @@ const Login = () => {
                      shadow={true}
                      icon={GoKey}
                   />
-                  {error ? (
-                     <p className="text-[15px] text-red-500">
-                        <strong>{error}</strong>
-                     </p>
-                  ) : null}
+                  <div className="text-end text-blue-400">
+                     <Link>
+                        <p>Forgot Password?</p>
+                     </Link>
+                  </div>
                </div>
-               <div className="text-center hover:text-blue-700">
-                  <Link>
-                     <p>Forgot Password?</p>
-                  </Link>
-               </div>
+
+               {error ? (
+                  <p className="text-[15px] text-red-500 text-center animate-bounce	">
+                     <strong>{error}</strong>
+                  </p>
+               ) : null}
                <Button type="submit">Login</Button>
                <div>
                   <p className="text-center">
