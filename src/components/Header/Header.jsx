@@ -12,17 +12,38 @@ const menus = [
 ];
 
 const Header = () => {
-   const { user } = useContext(AuthContext);
+   const { user, logoutAUser } = useContext(AuthContext);
+
+   /* handle logout */
+   const handleLogout = () => {
+      logoutAUser();
+   };
+
    return (
       <div className="sticky top-0 z-[1] bg-slate-50 shadow-md">
          <Navbar fluid={true} rounded={true} className="bg-transparent max-w-[1320px] mx-auto">
-            <Navbar.Brand to="https://flowbite.com/">
+            <Link to="/">
                <img src={logoLight} className="mr-3 h-6 sm:h-9 lg:h-16" alt="Flowbite Logo" />
-            </Navbar.Brand>
-            <div className="flex md:order-2">
-               <Link to="/login">
-                  <Button>Login</Button>
-               </Link>
+            </Link>
+            <div className="flex md:order-2 gap-2">
+               {user?.uid ? (
+                  <>
+                     <Link>
+                        <Avatar
+                           img="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
+                           rounded={true}
+                        />
+                     </Link>
+                     <Button onClick={handleLogout}>Logout</Button>
+                  </>
+               ) : (
+                  <>
+                     <Link to="/login">
+                        <Button>Login</Button>
+                     </Link>
+                  </>
+               )}
+
                <Navbar.Toggle />
             </div>
             <Navbar.Collapse>

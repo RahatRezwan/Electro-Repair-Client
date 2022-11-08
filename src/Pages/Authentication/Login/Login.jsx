@@ -1,28 +1,62 @@
 import { Button, Label, TextInput } from "flowbite-react";
-import React from "react";
+import React, { useContext, useState } from "react";
 import { GoMail, GoKey } from "react-icons/go";
 import { FaGoogle, FaFacebook } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import loginImg from "../../../assests/loginpage.png";
+import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
 
 const Login = () => {
+   const { loginAUser } = useContext(AuthContext);
+   const [error, setError] = useState(null);
+
+   /* handle login */
+   const handleLogin = (event) => {
+      setError(null);
+      event.preventDefault();
+      const form = event.target;
+      const email = form.email.value;
+      const password = form.password.value;
+      console.log(email, password);
+
+      loginAUser(email, password)
+         .then((result) => {
+            const user = result.user;
+            console.log(user);
+         })
+         .catch((error) => {
+            if (error.code.slice(5) === "user-not-found") {
+               setError("User Not Found");
+               return;
+            }
+            if (error.code.slice(5) === "wrong-password") {
+               setError("Your password is incorrect");
+               return;
+            }
+         });
+   };
+
    return (
       <div className="min-h-screen w-full mx-auto mt-8 flex flex-cols lg:flex-row justify-evenly items-center">
          <div className="w-full flex justify-center">
             <img src={loginImg} alt="" className="w-50" />
          </div>
          <div className="w-full flex justify-center">
-            <form className="flex flex-col gap-4 border border-gray-300 rounded-md p-[50px] w-[80%]">
+            <form
+               onSubmit={handleLogin}
+               className="flex flex-col gap-4 border border-gray-300 rounded-md p-[50px] w-[80%]"
+            >
                <div>
                   <h1 className="text-3xl text-center">Login</h1>
                </div>
                <div>
                   <div className="mb-2 block">
-                     <Label htmlFor="email2" value="Your email" />
+                     <Label htmlFor="email" value="Your email" />
                   </div>
                   <TextInput
-                     id="email2"
+                     id="email"
                      type="email"
+                     name="email"
                      placeholder="example@email.com"
                      required={true}
                      shadow={true}
@@ -31,16 +65,22 @@ const Login = () => {
                </div>
                <div>
                   <div className="mb-2 block">
-                     <Label htmlFor="password2" value="Your password" />
+                     <Label htmlFor="password" value="Your password" />
                   </div>
                   <TextInput
-                     id="password2"
+                     id="password"
                      type="password"
+                     email="password"
                      placeholder="your password"
                      required={true}
                      shadow={true}
                      icon={GoKey}
                   />
+                  {error ? (
+                     <p className="text-[15px] text-red-500">
+                        <strong>{error}</strong>
+                     </p>
+                  ) : null}
                </div>
                <div className="text-center hover:text-blue-700">
                   <Link>
