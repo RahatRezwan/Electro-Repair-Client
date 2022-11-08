@@ -2,7 +2,7 @@ import { Avatar, Button, Navbar } from "flowbite-react";
 import React, { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
-import logoDark from "../../logoDark.png";
+// import logoDark from "../../logoDark.png";
 import logoLight from "../../logoLight.png";
 
 const menus = [
@@ -27,15 +27,19 @@ const Header = () => {
             </Link>
             <div className="flex md:order-2 gap-2">
                {user?.uid ? (
-                  <>
+                  <div className="flex items-center gap-3">
                      <Link>
                         <Avatar
-                           img="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
+                           img={
+                              user?.photoUrl
+                                 ? user.photoUrl
+                                 : "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png"
+                           }
                            rounded={true}
                         />
                      </Link>
                      <Button onClick={handleLogout}>Logout</Button>
-                  </>
+                  </div>
                ) : (
                   <>
                      <Link to="/login">

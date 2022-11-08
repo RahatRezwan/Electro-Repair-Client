@@ -102,9 +102,12 @@ const Register = () => {
                      shadow={true}
                      icon={GoKey}
                   />
-                  <p className="text-[14px] text-red-500">{error}</p>
                </div>
-
+               {error ? (
+                  <p className="text-[15px] text-red-500 text-center animate-bounce	">
+                     <strong>{error}</strong>
+                  </p>
+               ) : null}
                <Button type="submit">Register</Button>
                <div>
                   <p className="text-center">
