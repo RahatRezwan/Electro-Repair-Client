@@ -7,7 +7,7 @@ import loginImg from "../../../assests/loginpage.png";
 import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
 
 const Login = () => {
-   const { loginAUser } = useContext(AuthContext);
+   const { loginAUser, googleLogin } = useContext(AuthContext);
    const [error, setError] = useState(null);
 
    /* handle login */
@@ -34,6 +34,16 @@ const Login = () => {
                return;
             }
          });
+   };
+
+   /* google login */
+   const handleGoogleLogin = () => {
+      googleLogin()
+         .then((result) => {
+            const user = result.user;
+            console.log(user);
+         })
+         .catch((e) => console.log(e));
    };
 
    return (
@@ -105,7 +115,7 @@ const Login = () => {
 
                <p className="text-center">Login With</p>
                <div className="grid grid-cols-2 gap-3">
-                  <Button type="submit">
+                  <Button onClick={handleGoogleLogin} type="">
                      <FaGoogle className="h-5 w-5 mr-2" /> Google
                   </Button>
                   <Button type="submit">
