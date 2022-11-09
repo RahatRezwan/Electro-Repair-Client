@@ -1,7 +1,7 @@
 import { Button, Label, TextInput } from "flowbite-react";
 import React, { useContext, useState } from "react";
 import { GoMail, GoKey } from "react-icons/go";
-import { FaGoogle, FaFacebook } from "react-icons/fa";
+import { FaGoogle, FaGithub } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import loginImg from "../../../assests/loginpage.png";
 import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
@@ -49,7 +49,7 @@ const Login = () => {
    };
 
    return (
-      <div className="min-h-screen w-full mx-auto mt-8 flex flex-cols lg:flex-row justify-evenly items-center">
+      <div className="min-h-screen max-w-[1320px] mx-auto mt-8 flex gap-4 lg:gap-0 flex-col-reverse lg:flex-row justify-evenly items-center">
          <div className="w-full flex justify-center">
             <img src={loginImg} alt="" className="w-50" />
          </div>
@@ -121,7 +121,7 @@ const Login = () => {
                      <FaGoogle className="h-5 w-5 mr-2" /> Google
                   </Button>
                   <Button type="submit">
-                     <FaFacebook className="h-5 w-5 mr-2" /> Facebook
+                     <FaGithub className="h-5 w-5 mr-2" /> Github
                   </Button>
                </div>
             </form>

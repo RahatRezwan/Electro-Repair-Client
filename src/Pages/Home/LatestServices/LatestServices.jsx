@@ -6,7 +6,7 @@ import ServiceCard from "../../Shared/ServiceCard/ServiceCard";
 const LatestServices = () => {
    const [services, setServices] = useState([]);
    useEffect(() => {
-      fetch("http://localhost:5000/services?homeLimit=3")
+      fetch("http://localhost:5000/services?size=3")
          .then((res) => res.json())
          .then((data) => setServices(data));
    }, []);
