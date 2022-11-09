@@ -1,11 +1,12 @@
 import React from "react";
 import useSetTitle from "../../../hooks/useSetTitle";
+import Banner from "../Banner/Banner";
 
 const Home = () => {
    useSetTitle("Home");
    return (
       <div>
-         <h1>Homepage</h1>
+         <Banner />
       </div>
    );
 };

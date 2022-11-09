@@ -20,8 +20,8 @@ const Header = () => {
    };
 
    return (
-      <div className="sticky top-0 z-[1] bg-slate-50 shadow-md">
-         <Navbar fluid={true} rounded={true} className="bg-transparent max-w-[1320px] mx-auto">
+      <div className="sticky top-0 z-[3] bg-slate-100 shadow-md">
+         <Navbar fluid={true} rounded={true} className="bg-slate-100 max-w-[1320px] mx-auto">
             <Link to="/">
                <img src={logoLight} className="mr-3 h-6 sm:h-9 lg:h-16" alt="Flowbite Logo" />
             </Link>
