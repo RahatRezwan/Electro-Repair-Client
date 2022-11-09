@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { Link, useLoaderData } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
 import useSetTitle from "../../hooks/useSetTitle";
+import Reviews from "./Reviews/Reviews";
 import WriteCommentForm from "./WriteCommentForm/WriteCommentForm";
 
 const ServiceDetails = () => {
@@ -44,6 +45,9 @@ const ServiceDetails = () => {
                </h1>
                <WriteCommentForm user={user} id={_id} />
             </div>
+
+            {/* reviews section */}
+            <Reviews serviceId={_id} />
          </div>
 
          {/* Side Bar */}

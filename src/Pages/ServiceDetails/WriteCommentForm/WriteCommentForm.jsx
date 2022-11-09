@@ -4,12 +4,13 @@ import React from "react";
 const WriteCommentForm = ({ user, id }) => {
    const handleSubmit = (event) => {
       event.preventDefault();
-      const comment = event.target.value;
+      const comment = event.target.comment.value;
       const serviceId = id;
       const userName = user?.displayName;
       const userPhoto = user?.photoURL;
       const userEmail = user?.email;
-      const review = { comment, serviceId, userEmail, userName, userPhoto };
+      const date = new Date();
+      const review = { comment, serviceId, userEmail, userName, userPhoto, date };
 
       fetch("http://localhost:5000/reviews", {
          method: "POST",
@@ -34,6 +35,7 @@ const WriteCommentForm = ({ user, id }) => {
             </div>
             <Textarea
                id="comment"
+               name="comment"
                placeholder="Add Your Review..."
                required={true}
                rows={4}
