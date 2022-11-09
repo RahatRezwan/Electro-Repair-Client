@@ -2,7 +2,7 @@ import { Button, Label, TextInput } from "flowbite-react";
 import React, { useContext, useState } from "react";
 import { GoMail, GoKey } from "react-icons/go";
 import { FaGoogle, FaGithub } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import loginImg from "../../../assests/loginpage.png";
 import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
 import useSetTitle from "../../../hooks/useSetTitle";
@@ -11,6 +11,10 @@ const Login = () => {
    const { loginAUser, googleLogin } = useContext(AuthContext);
    const [error, setError] = useState(null);
    useSetTitle("Login");
+
+   const location = useLocation();
+   const navigate = useNavigate();
+   const from = location.state?.from?.pathname || "/";
 
    /* handle login */
    const handleLogin = (event) => {
@@ -24,7 +28,8 @@ const Login = () => {
       loginAUser(email, password)
          .then((result) => {
             const user = result.user;
-            console.log(user);
+            form.reset();
+            navigate(from, { replace: true });
          })
          .catch((error) => {
             if (error.code.slice(5) === "user-not-found") {
@@ -43,7 +48,7 @@ const Login = () => {
       googleLogin()
          .then((result) => {
             const user = result.user;
-            console.log(user);
+            navigate(from, { replace: true });
          })
          .catch((e) => console.log(e));
    };
