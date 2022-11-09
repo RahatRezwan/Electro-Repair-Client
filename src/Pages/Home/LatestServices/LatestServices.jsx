@@ -8,7 +8,7 @@ const LatestServices = () => {
    useEffect(() => {
       fetch("http://localhost:5000/services?size=3")
          .then((res) => res.json())
-         .then((data) => setServices(data));
+         .then((data) => setServices(data.services));
    }, []);
    return (
       <div className="max-w-[1320px] w-[95%] mx-auto my-5">
