@@ -1,7 +1,10 @@
 import { Button, Label, Textarea, TextInput } from "flowbite-react";
-import React from "react";
+import React, { useContext } from "react";
+import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
 import useSetTitle from "../../hooks/useSetTitle";
+
 const AddService = () => {
+   const { user } = useContext(AuthContext);
    useSetTitle("Add Service");
    const handleAddService = (event) => {
       event.preventDefault();
@@ -12,8 +15,11 @@ const AddService = () => {
       const duration = form.duration.value;
       const imgUrl = form.imgUrl.value;
       const description = form.description.value;
+      const author = user?.displayName;
+      const authorImg = user?.photURL;
+      const date = new Date();
 
-      const service = { title, price, duration, imgUrl, description };
+      const service = { title, price, duration, imgUrl, description, author, authorImg, date };
       fetch("http://localhost:5000/services", {
          method: "POST",
          headers: {
