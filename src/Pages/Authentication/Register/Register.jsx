@@ -2,16 +2,17 @@ import { Button, Label, TextInput } from "flowbite-react";
 import React, { useContext, useState } from "react";
 import { FaGithub, FaGoogle, FaUser, FaImage } from "react-icons/fa";
 import { GoKey, GoMail } from "react-icons/go";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import loginImg from "../../../assests/loginpage.png";
 import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
 import useSetTitle from "../../../hooks/useSetTitle";
 
 const Register = () => {
-   const { createANewUser, googleLogin } = useContext(AuthContext);
+   const { createANewUser, googleLogin, updateUserProfile } = useContext(AuthContext);
    const [error, setError] = useState(null);
    useSetTitle("Register");
 
+   const navigate = useNavigate();
    /* handle Registration */
    const handleRegister = (event) => {
       setError(null);
@@ -30,9 +31,18 @@ const Register = () => {
       /* create user using firebase email & pass*/
       createANewUser(email, password)
          .then((result) => {
-            const user = result.user;
+            handleUpdateProfile(fullName, photoUrl);
             form.reset();
-            console.log(user);
+         })
+         .catch((e) => console.log(e));
+   };
+
+   /* Handle update profile */
+   const handleUpdateProfile = (displayName, photoURL) => {
+      const userInfo = { displayName, photoURL };
+      updateUserProfile(userInfo)
+         .then(() => {
+            navigate("/");
          })
          .catch((e) => console.log(e));
    };
@@ -41,8 +51,7 @@ const Register = () => {
    const handleGoogleLogin = () => {
       googleLogin()
          .then((result) => {
-            const user = result.user;
-            console.log(user);
+            navigate("/");
          })
          .catch((e) => console.log(e));
    };
