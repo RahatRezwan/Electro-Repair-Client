@@ -9,7 +9,6 @@ const ServiceDetails = () => {
    const { user } = useContext(AuthContext);
    const service = useLoaderData();
    const { _id, imgUrl, title, author, price, description, duration } = service;
-
    useSetTitle(`${title}`);
 
    return (
@@ -43,7 +42,7 @@ const ServiceDetails = () => {
                      </span>
                   )}
                </h1>
-               <WriteCommentForm user={user} id={_id} />
+               <WriteCommentForm id={_id} />
             </div>
 
             {/* reviews section */}

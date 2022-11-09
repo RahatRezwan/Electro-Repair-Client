@@ -1,7 +1,9 @@
 import { Button, Label, Textarea } from "flowbite-react";
-import React from "react";
+import React, { useContext } from "react";
+import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
 
-const WriteCommentForm = ({ user, id }) => {
+const WriteCommentForm = ({ id }) => {
+   const { user } = useContext(AuthContext);
    const handleSubmit = (event) => {
       event.preventDefault();
       const comment = event.target.comment.value;

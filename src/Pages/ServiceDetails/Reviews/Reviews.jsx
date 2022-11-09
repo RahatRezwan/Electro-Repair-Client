@@ -6,7 +6,9 @@ const Reviews = ({ serviceId }) => {
    useEffect(() => {
       fetch(`http://localhost:5000/reviews?serviceId=${serviceId}`)
          .then((res) => res.json())
-         .then((data) => setReviews(data));
+         .then((data) => {
+            setReviews(data);
+         });
    }, [serviceId]);
 
    return (
