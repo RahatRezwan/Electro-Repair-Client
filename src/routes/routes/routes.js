@@ -1,6 +1,15 @@
 import { createBrowserRouter } from "react-router-dom";
 import Main from "../../layouts/Main";
-import { AddService, Blogs, Home, Login, MyReviews, Register, Services } from "../../Pages";
+import {
+   AddService,
+   Blogs,
+   Home,
+   Login,
+   MyReviews,
+   Register,
+   ServiceDetails,
+   Services,
+} from "../../Pages";
 import PrivateRoutes from "../PrivateRoute/PrivateRoutes";
 
 export const routes = createBrowserRouter([
@@ -16,6 +25,12 @@ export const routes = createBrowserRouter([
             path: "/services",
             element: <Services />,
          },
+         {
+            path: "/services/:id",
+            element: <ServiceDetails />,
+            loader: async ({ params }) => fetch(`http://localhost:5000/services/${params.id}`),
+         },
+
          {
             path: "/addService",
             element: (

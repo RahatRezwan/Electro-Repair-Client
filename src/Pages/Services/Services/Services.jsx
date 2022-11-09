@@ -35,9 +35,9 @@ const Services = () => {
 
          {/* pagination */}
          <div className="mx-auto flex gap-2 my-5 justify-center">
-            {[...Array(totalPages).keys()].map((number) => (
+            {[...Array(totalPages).keys()].map((number, i) => (
                <>
-                  <Button key={number} onClick={() => setCurrentPage(number)}>
+                  <Button key={number + i} onClick={() => setCurrentPage(number)}>
                      {number + 1}
                   </Button>
                </>

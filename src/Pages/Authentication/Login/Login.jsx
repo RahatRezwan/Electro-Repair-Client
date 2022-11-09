@@ -28,6 +28,7 @@ const Login = () => {
       loginAUser(email, password)
          .then((result) => {
             const user = result.user;
+            const currentUser = { email: user?.email };
             form.reset();
             navigate(from, { replace: true });
          })
@@ -48,6 +49,7 @@ const Login = () => {
       googleLogin()
          .then((result) => {
             const user = result.user;
+            const currentUser = { email: user?.email };
             navigate(from, { replace: true });
          })
          .catch((e) => console.log(e));

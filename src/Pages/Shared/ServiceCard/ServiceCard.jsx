@@ -26,7 +26,7 @@ const ServiceCard = ({ service }) => {
             <h2 className="text-lg md:text-2xl font-extrabold text-gray-600 uppercase">
                {price} Taka
             </h2>
-            <Link to={`/service/${_id}`}>
+            <Link to={`/services/${_id}`}>
                <Button>See Details</Button>
             </Link>
          </div>
