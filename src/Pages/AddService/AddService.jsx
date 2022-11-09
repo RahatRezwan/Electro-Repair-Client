@@ -30,7 +30,6 @@ const AddService = () => {
          .then((res) => res.json())
          .then((data) => {
             if (data.acknowledged) {
-               alert("Product Added Successfully");
                form.reset();
                console.log(data);
             }

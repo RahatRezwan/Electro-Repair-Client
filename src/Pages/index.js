@@ -7,5 +7,17 @@ import MyReviews from "./MyReviews/MyReviews";
 import Profile from "./Profile/Profile";
 import ServiceDetails from "./ServiceDetails/ServiceDetails";
 import Services from "./Services/Services/Services";
+import ServiceCard from "./Shared/ServiceCard/ServiceCard";
 
-export { Home, Blogs, Services, AddService, Login, Register, MyReviews, Profile, ServiceDetails };
+export {
+   Home,
+   Blogs,
+   Services,
+   AddService,
+   Login,
+   Register,
+   MyReviews,
+   Profile,
+   ServiceDetails,
+   ServiceCard,
+};
