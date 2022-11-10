@@ -22,19 +22,19 @@ const ServiceDetails = () => {
 
    return (
       <div className="max-w-[1320px] mx-auto flex gap-5 mt-11">
-         <div className="w-[70%] border rounded-md p-5">
+         <div className="w-[70%] border rounded-md p-7">
             {/* service details */}
             <div className="mb-7">
-               <img src={imgUrl} alt="" className="mb-2" />
-               <h1 className="text-4xl font-extrabold mb-2">{title}</h1>
+               <img src={imgUrl} alt="" className="mb-5" />
+               <h1 className="text-4xl font-extrabold mb-5">{title}</h1>
                {/* serviceman */}
-               <div className="flex justify-start gap-10">
+               <div className="flex justify-start gap-10 mb-5">
                   <p className="font-bold">Serviceman: {author}</p>
                   <p className="font-bold">Price: {price}</p>
                   <p className="font-bold">Duration: {duration}</p>
                </div>
                <h4 className="text-2xl font-bold">Description:</h4>
-               <p className="text-justify">{description}</p>
+               <p className="text-[20px]">{description}</p>
             </div>
 
             {/* Write comment */}

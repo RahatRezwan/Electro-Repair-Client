@@ -11,27 +11,25 @@ const AddBlogs = () => {
       const form = event.target;
 
       const title = form.title.value;
-      const price = form.price.value;
-      const duration = form.duration.value;
       const imgUrl = form.imgUrl.value;
       const description = form.description.value;
       const author = user?.displayName;
       const authorImg = user?.photURL;
       const date = new Date();
 
-      const service = { title, price, duration, imgUrl, description, author, authorImg, date };
+      const blog = { title, imgUrl, description, author, authorImg, date };
       fetch("http://localhost:5000/blogs", {
          method: "POST",
          headers: {
             "Content-Type": "application/json",
          },
-         body: JSON.stringify(service),
+         body: JSON.stringify(blog),
       })
          .then((res) => res.json())
          .then((data) => {
             if (data.acknowledged) {
+               alert("New Blog Created Successfully");
                form.reset();
-               console.log(data);
             }
          });
    };

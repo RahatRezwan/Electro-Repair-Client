@@ -1,3 +1,4 @@
+import { async } from "@firebase/util";
 import { createBrowserRouter } from "react-router-dom";
 import Main from "../../layouts/Main";
 import {
@@ -11,6 +12,7 @@ import {
    Services,
 } from "../../Pages";
 import AddBlogs from "../../Pages/AddBlogs/AddBlogs";
+import BlogDetails from "../../Pages/BlogDetails/BlogDetails";
 import PrivateRoutes from "../PrivateRoute/PrivateRoutes";
 export const routes = createBrowserRouter([
    {
@@ -58,6 +60,12 @@ export const routes = createBrowserRouter([
          {
             path: "/blogs",
             element: <Blogs />,
+            loader: async () => fetch("http://localhost:5000/blogs"),
+         },
+         {
+            path: "/blogs/:id",
+            element: <BlogDetails />,
+            loader: async ({ params }) => fetch(`http://localhost:5000/blogs/${params.id}`),
          },
          {
             path: "/login",
