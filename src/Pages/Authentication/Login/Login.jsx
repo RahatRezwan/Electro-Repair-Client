@@ -1,14 +1,14 @@
 import { Button, Label, TextInput } from "flowbite-react";
 import React, { useContext, useState } from "react";
 import { GoMail, GoKey } from "react-icons/go";
-import { FaGoogle, FaGithub } from "react-icons/fa";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import loginImg from "../../../assests/loginpage.png";
 import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
 import useSetTitle from "../../../hooks/useSetTitle";
+import SocialLogin from "../SocialLogin/SocialLogin";
 
 const Login = () => {
-   const { loginAUser, googleLogin } = useContext(AuthContext);
+   const { loginAUser } = useContext(AuthContext);
    const [error, setError] = useState(null);
    useSetTitle("Login");
 
@@ -42,8 +42,8 @@ const Login = () => {
                .then((data) => {
                   console.log(data);
                   localStorage.setItem("electro_repair_token", data.token);
+                  navigate(from, { replace: true });
                });
-            // navigate(from, { replace: true });
          })
          .catch((error) => {
             if (error.code.slice(5) === "user-not-found") {
@@ -55,17 +55,6 @@ const Login = () => {
                return;
             }
          });
-   };
-
-   /* google login */
-   const handleGoogleLogin = () => {
-      googleLogin()
-         .then((result) => {
-            const user = result.user;
-            const currentUser = { email: user?.email };
-            navigate(from, { replace: true });
-         })
-         .catch((e) => console.log(e));
    };
 
    return (
@@ -136,14 +125,7 @@ const Login = () => {
                </div>
 
                <p className="text-center">Login With</p>
-               <div className="grid grid-cols-2 gap-3">
-                  <Button onClick={handleGoogleLogin} type="">
-                     <FaGoogle className="h-5 w-5 mr-2" /> Google
-                  </Button>
-                  <Button type="submit">
-                     <FaGithub className="h-5 w-5 mr-2" /> Github
-                  </Button>
-               </div>
+               <SocialLogin />
             </form>
          </div>
       </div>

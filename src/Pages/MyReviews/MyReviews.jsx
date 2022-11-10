@@ -6,15 +6,32 @@ import ReviewDeleteBtn from "./ReviewDeleteBtn/ReviewDeleteBtn";
 
 const MyReviews = () => {
    const [reviews, setReviews] = useState([]);
-   const { user } = useContext(AuthContext);
+   const { user, logoutAUser } = useContext(AuthContext);
    window.scroll(0, 0);
    useEffect(() => {
-      fetch(`http://localhost:5000/reviews?email=${user?.email}`)
-         .then((res) => res.json())
+      fetch(`http://localhost:5000/reviews-by-email?email=${user?.email}`, {
+         headers: {
+            authorization: `Bearer ${localStorage.getItem("electro_repair_token")}`,
+         },
+      })
+         .then((res) => {
+            if (res.status === 401 || res.status === 403) {
+               logoutAUser();
+            }
+            return res.json();
+         })
          .then((data) => {
             setReviews(data);
          });
-   }, [user?.email]);
+   }, [user?.email, logoutAUser]);
+
+   if (reviews.length === 0) {
+      return (
+         <div className="max-w-[1024px] mx-auto min-h-[600px] flex justify-center items-center">
+            <h2 className="text-2xl font-extrabold">No Reviews Found</h2>
+         </div>
+      );
+   }
 
    return (
       <div className="max-w-[1024px] mx-auto min-h-screen py-14">

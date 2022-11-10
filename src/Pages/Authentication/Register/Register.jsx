@@ -1,14 +1,15 @@
 import { Button, Label, TextInput } from "flowbite-react";
 import React, { useContext, useState } from "react";
-import { FaGithub, FaGoogle, FaUser, FaImage } from "react-icons/fa";
+import { FaUser, FaImage } from "react-icons/fa";
 import { GoKey, GoMail } from "react-icons/go";
 import { Link, useNavigate } from "react-router-dom";
 import loginImg from "../../../assests/loginpage.png";
 import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
 import useSetTitle from "../../../hooks/useSetTitle";
+import SocialLogin from "../SocialLogin/SocialLogin";
 
 const Register = () => {
-   const { createANewUser, googleLogin, updateUserProfile } = useContext(AuthContext);
+   const { createANewUser, updateUserProfile } = useContext(AuthContext);
    const [error, setError] = useState(null);
    useSetTitle("Register");
 
@@ -31,8 +32,23 @@ const Register = () => {
       /* create user using firebase email & pass*/
       createANewUser(email, password)
          .then((result) => {
-            handleUpdateProfile(fullName, photoUrl);
-            form.reset();
+            const user = result.user;
+            const currentUser = { email: user.email };
+            /* get jwt token */
+            fetch("http://localhost:5000/jwt", {
+               method: "POST",
+               headers: {
+                  "content-type": "application/json",
+               },
+               body: JSON.stringify(currentUser),
+            })
+               .then((res) => res.json())
+               .then((data) => {
+                  console.log(data);
+                  localStorage.setItem("electro_repair_token", data.token);
+                  handleUpdateProfile(fullName, photoUrl);
+                  form.reset();
+               });
          })
          .catch((e) => console.log(e));
    };
@@ -42,15 +58,6 @@ const Register = () => {
       const userInfo = { displayName, photoURL };
       updateUserProfile(userInfo)
          .then(() => {
-            navigate("/");
-         })
-         .catch((e) => console.log(e));
-   };
-
-   /* google login */
-   const handleGoogleLogin = () => {
-      googleLogin()
-         .then((result) => {
             navigate("/");
          })
          .catch((e) => console.log(e));
@@ -146,14 +153,7 @@ const Register = () => {
                </div>
 
                <p className="text-center">Login With</p>
-               <div className="grid grid-cols-2 gap-3">
-                  <Button onClick={handleGoogleLogin} type="">
-                     <FaGoogle className="h-5 w-5 mr-2" /> Google
-                  </Button>
-                  <Button type="submit">
-                     <FaGithub className="h-5 w-5 mr-2" /> Github
-                  </Button>
-               </div>
+               <SocialLogin />
             </form>
          </div>
       </div>

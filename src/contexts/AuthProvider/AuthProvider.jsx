@@ -43,6 +43,7 @@ const AuthProvider = ({ children }) => {
    /* Logout a user */
    const logoutAUser = () => {
       setLoader(true);
+      localStorage.removeItem("electro_repair_token");
       return signOut(auth);
    };
 
