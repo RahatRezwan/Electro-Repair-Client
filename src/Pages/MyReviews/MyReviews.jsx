@@ -39,7 +39,7 @@ const MyReviews = () => {
    if (reviews.length === 0) {
       return (
          <div className="max-w-[1024px] mx-auto min-h-[600px] flex justify-center items-center">
-            <h2 className="text-2xl font-extrabold">No Reviews Found</h2>
+            <h2 className="text-2xl font-extrabold">No Reviews Were Added</h2>
          </div>
       );
    }
