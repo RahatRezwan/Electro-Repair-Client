@@ -1,19 +1,12 @@
 import { Avatar } from "flowbite-react";
-import React, { useEffect, useState } from "react";
+import React from "react";
 
-const Reviews = ({ serviceId }) => {
-   const [reviews, setReviews] = useState([]);
-   useEffect(() => {
-      fetch(`http://localhost:5000/reviews?serviceId=${serviceId}`)
-         .then((res) => res.json())
-         .then((data) => {
-            setReviews(data);
-         });
-   }, [serviceId]);
-
+const Reviews = ({ reviews }) => {
    return (
       <div>
-         <h1 className="text-2xl font-bold my-3">All Comments</h1>
+         <h1 className="text-2xl font-bold my-3">
+            {reviews.length === 0 ? "No Reviews Found" : "All Reviews"}
+         </h1>
          {reviews.map((review) => (
             <div
                key={review._id}

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, useLoaderData } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
 import useSetTitle from "../../hooks/useSetTitle";
@@ -10,6 +10,15 @@ const ServiceDetails = () => {
    const service = useLoaderData();
    const { _id, imgUrl, title, author, price, description, duration } = service;
    useSetTitle(`${title}`);
+
+   const [reviews, setReviews] = useState([]);
+   useEffect(() => {
+      fetch(`http://localhost:5000/reviews?serviceId=${_id}`)
+         .then((res) => res.json())
+         .then((data) => {
+            setReviews(data);
+         });
+   }, [_id]);
 
    return (
       <div className="max-w-[1320px] mx-auto flex gap-5 mt-11">
@@ -42,11 +51,11 @@ const ServiceDetails = () => {
                      </span>
                   )}
                </h1>
-               <WriteCommentForm id={_id} />
+               <WriteCommentForm id={_id} setReviews={setReviews} reviews={reviews} />
             </div>
 
             {/* reviews section */}
-            <Reviews serviceId={_id} />
+            <Reviews reviews={reviews} />
          </div>
 
          {/* Side Bar */}

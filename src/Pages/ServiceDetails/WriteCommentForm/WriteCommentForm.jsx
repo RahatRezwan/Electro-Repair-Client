@@ -2,7 +2,7 @@ import { Button, Label, Textarea } from "flowbite-react";
 import React, { useContext } from "react";
 import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
 
-const WriteCommentForm = ({ id }) => {
+const WriteCommentForm = ({ id, setReviews, reviews }) => {
    const { user } = useContext(AuthContext);
    const handleSubmit = (event) => {
       event.preventDefault();
@@ -26,6 +26,8 @@ const WriteCommentForm = ({ id }) => {
             if (data.acknowledged) {
                alert("successfully added review");
                event.target.reset();
+               const newReviewArray = [review, ...reviews];
+               setReviews(newReviewArray);
             }
          });
    };
