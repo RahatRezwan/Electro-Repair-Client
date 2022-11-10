@@ -3,8 +3,10 @@ import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
 import ReviewEditBtn from "./ReviewEditBtn/ReviewEditBtn";
 import ReviewDeleteBtn from "./ReviewDeleteBtn/ReviewDeleteBtn";
+import useSetTitle from "../../hooks/useSetTitle";
 
 const MyReviews = () => {
+   useSetTitle("My Reviews");
    const [reviews, setReviews] = useState([]);
    const { user, logoutAUser } = useContext(AuthContext);
    window.scroll(0, 0);
