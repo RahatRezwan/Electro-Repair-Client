@@ -51,7 +51,7 @@ const ServiceDetails = () => {
                      </span>
                   )}
                </h1>
-               <WriteCommentForm id={_id} setReviews={setReviews} reviews={reviews} />
+               <WriteCommentForm id={_id} title={title} setReviews={setReviews} reviews={reviews} />
             </div>
 
             {/* reviews section */}

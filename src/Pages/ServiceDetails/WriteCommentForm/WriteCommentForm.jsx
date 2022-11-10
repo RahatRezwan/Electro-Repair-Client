@@ -2,17 +2,18 @@ import { Button, Label, Textarea } from "flowbite-react";
 import React, { useContext } from "react";
 import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
 
-const WriteCommentForm = ({ id, setReviews, reviews }) => {
+const WriteCommentForm = ({ title, id, setReviews, reviews }) => {
    const { user } = useContext(AuthContext);
    const handleSubmit = (event) => {
       event.preventDefault();
       const comment = event.target.comment.value;
       const serviceId = id;
+      const serviceName = title;
       const userName = user?.displayName;
       const userPhoto = user?.photoURL;
       const userEmail = user?.email;
       const date = new Date();
-      const review = { comment, serviceId, userEmail, userName, userPhoto, date };
+      const review = { comment, serviceId, serviceName, userEmail, userName, userPhoto, date };
 
       fetch("http://localhost:5000/reviews", {
          method: "POST",
