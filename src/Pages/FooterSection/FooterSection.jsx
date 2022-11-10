@@ -14,25 +14,19 @@ const FooterSection = () => {
                         src={logo}
                         alt="Electrorepair Logo"
                         name="electrorepair"
-                        className="w-50 h-50"
+                        className="w-[150px] md:w-[250px] lg:w-[450px] mb-5 md:mb-0"
                      />
                   </Link>
                </div>
                <div className="grid grid-cols-2 gap-8 sm:mt-4 sm:grid-cols-4 sm:gap-6">
                   <div>
-                     <Footer.Title title="Link" />
+                     <Footer.Title title="Direct Link" />
                      <Footer.LinkGroup col={true}>
                         <Link to="/services">Services</Link>
                         <Link to="/blogs">Blogs</Link>
                      </Footer.LinkGroup>
                   </div>
-                  <div>
-                     <Footer.Title title="Follow us" />
-                     <Footer.LinkGroup col={true}>
-                        <Footer.Link href="https://github.com/">Github</Footer.Link>
-                        <Footer.Link href="https://www.facebook.com/">Facebook</Footer.Link>
-                     </Footer.LinkGroup>
-                  </div>
+
                   <div>
                      <Footer.Title title="Your Activity" />
                      <Footer.LinkGroup col={true}>
@@ -44,6 +38,13 @@ const FooterSection = () => {
                      <Footer.LinkGroup col={true}>
                         <Link to="/addService">Add Service</Link>
                         <Link to="/addBlog">Add Blog</Link>
+                     </Footer.LinkGroup>
+                  </div>
+                  <div>
+                     <Footer.Title title="Follow us" />
+                     <Footer.LinkGroup col={true}>
+                        <Footer.Link href="https://github.com/">Github</Footer.Link>
+                        <Footer.Link href="https://www.facebook.com/">Facebook</Footer.Link>
                      </Footer.LinkGroup>
                   </div>
                </div>
