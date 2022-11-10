@@ -14,7 +14,6 @@ const BlogDetails = () => {
                <h1 className="text-4xl font-extrabold mb-5">{title}</h1>
                {/* Author */}
                <p className="font-bold mb-5">Author: {author}</p>
-
                <p className="text-[20px]">{description}</p>
             </div>
          </div>
