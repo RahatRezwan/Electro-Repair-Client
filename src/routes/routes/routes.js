@@ -10,6 +10,7 @@ import {
    ServiceDetails,
    Services,
 } from "../../Pages";
+import AddBlogs from "../../Pages/AddBlogs/AddBlogs";
 import PrivateRoutes from "../PrivateRoute/PrivateRoutes";
 export const routes = createBrowserRouter([
    {
@@ -43,6 +44,14 @@ export const routes = createBrowserRouter([
             element: (
                <PrivateRoutes>
                   <MyReviews />
+               </PrivateRoutes>
+            ),
+         },
+         {
+            path: "/addBlog",
+            element: (
+               <PrivateRoutes>
+                  <AddBlogs />
                </PrivateRoutes>
             ),
          },

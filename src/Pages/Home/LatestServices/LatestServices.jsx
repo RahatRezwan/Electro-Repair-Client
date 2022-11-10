@@ -18,9 +18,11 @@ const LatestServices = () => {
                <ServiceCard key={service._id} service={service} />
             ))}
          </div>
-         <Link to="/services">
-            <Button>See All</Button>
-         </Link>
+         <div className="mt-5 flex justify-center">
+            <Link to="/services">
+               <Button>See All Services</Button>
+            </Link>
+         </div>
       </div>
    );
 };
