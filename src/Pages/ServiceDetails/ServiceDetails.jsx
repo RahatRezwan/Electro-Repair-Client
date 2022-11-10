@@ -22,7 +22,7 @@ const ServiceDetails = () => {
 
    return (
       <div className="max-w-[1320px] mx-auto flex gap-5 mt-11">
-         <div className="w-[70%] border rounded-md p-7">
+         <div className="w-[70%] border rounded-md p-7 mx-auto">
             {/* service details */}
             <div className="mb-7">
                <img src={imgUrl} alt="" className="mb-5" />
@@ -56,14 +56,6 @@ const ServiceDetails = () => {
 
             {/* reviews section */}
             <Reviews reviews={reviews} />
-         </div>
-
-         {/* Side Bar */}
-         <div className="w-[30%] border rounded-md p-5 relative text-center">
-            <div className="sticky top-10">
-               <div>Top comments</div>
-               <div>Other Services</div>
-            </div>
          </div>
       </div>
    );

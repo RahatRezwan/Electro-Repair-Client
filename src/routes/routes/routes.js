@@ -12,11 +12,13 @@ import {
 } from "../../Pages";
 import AddBlogs from "../../Pages/AddBlogs/AddBlogs";
 import BlogDetails from "../../Pages/BlogDetails/BlogDetails";
+import ErrorPage from "../../Pages/ErrorPage/ErrorPage";
 import PrivateRoutes from "../PrivateRoute/PrivateRoutes";
 export const routes = createBrowserRouter([
    {
       path: "/",
       element: <Main />,
+      errorElement: <ErrorPage />,
       children: [
          {
             path: "/",
