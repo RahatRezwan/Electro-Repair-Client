@@ -22,7 +22,7 @@ const ReviewEditBtn = ({ _id, comment, reviews, setReviews }) => {
                const restComments = reviews.filter((cmt) => cmt._id !== _id);
                const editedComment = reviews.find((cmt) => cmt._id === _id);
                editedComment.comment = newComment;
-               const newCommentsArray = [editedComment, ...restComments];
+               const newCommentsArray = [...restComments, editedComment];
                setReviews(newCommentsArray);
             }
          });
