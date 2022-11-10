@@ -11,8 +11,14 @@ const LatestServices = () => {
          .then((data) => setServices(data.services));
    }, []);
    return (
-      <div className="max-w-[1320px] w-[95%] mx-auto my-5">
-         <h1 className="text-3xl font-bold uppercase mb-4">New Services</h1>
+      <div className="max-w-[1320px] w-[95%] mx-auto mt-[150px]">
+         <div className="text-center mb-10">
+            <h1 className="text-3xl font-extrabold uppercase my-4">New Services</h1>
+            <p className="w-[40%] mx-auto">
+               I always bring new service every month. I have more than 6 services. Visit service
+               page to checkout all of them.
+            </p>
+         </div>
          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
             {services.map((service) => (
                <ServiceCard key={service._id} service={service} />
