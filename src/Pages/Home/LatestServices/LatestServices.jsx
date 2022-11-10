@@ -6,9 +6,9 @@ import ServiceCard from "../../Shared/ServiceCard/ServiceCard";
 const LatestServices = () => {
    const [services, setServices] = useState([]);
    useEffect(() => {
-      fetch("https://electro-repair-server.vercel.app/services?size=3")
+      fetch("https://electro-repair-server.vercel.app/servicesinhome")
          .then((res) => res.json())
-         .then((data) => setServices(data.services));
+         .then((data) => setServices(data));
    }, []);
    return (
       <div className="max-w-[1320px] w-[95%] mx-auto mt-[150px]">
