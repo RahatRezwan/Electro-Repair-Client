@@ -18,7 +18,7 @@ const AddBlogs = () => {
       const date = new Date();
 
       const blog = { title, imgUrl, description, author, authorImg, date };
-      fetch("http://localhost:5000/blogs", {
+      fetch("https://electro-repair-server.vercel.app/blogs", {
          method: "POST",
          headers: {
             "Content-Type": "application/json",

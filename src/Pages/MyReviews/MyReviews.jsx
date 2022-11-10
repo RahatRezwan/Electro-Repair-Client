@@ -9,7 +9,7 @@ const MyReviews = () => {
    const { user, logoutAUser } = useContext(AuthContext);
    window.scroll(0, 0);
    useEffect(() => {
-      fetch(`http://localhost:5000/reviews-by-email?email=${user?.email}`, {
+      fetch(`https://electro-repair-server.vercel.app/reviews-by-email?email=${user?.email}`, {
          headers: {
             authorization: `Bearer ${localStorage.getItem("electro_repair_token")}`,
          },

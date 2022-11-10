@@ -10,7 +10,7 @@ const ReviewEditBtn = ({ _id, comment, reviews, setReviews }) => {
    const handleEditComment = () => {
       const editedComment = newComment;
       setVisible(false);
-      fetch(`http://localhost:5000/reviews/${_id}`, {
+      fetch(`https://electro-repair-server.vercel.app/reviews/${_id}`, {
          method: "PUT",
          headers: {
             "content-type": "application/json",

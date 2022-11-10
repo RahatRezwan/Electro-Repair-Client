@@ -31,7 +31,8 @@ export const routes = createBrowserRouter([
          {
             path: "/services/:id",
             element: <ServiceDetails />,
-            loader: async ({ params }) => fetch(`http://localhost:5000/services/${params.id}`),
+            loader: async ({ params }) =>
+               fetch(`https://electro-repair-server.vercel.app/services/${params.id}`),
          },
 
          {
@@ -61,12 +62,13 @@ export const routes = createBrowserRouter([
          {
             path: "/blogs",
             element: <Blogs />,
-            loader: async () => fetch("http://localhost:5000/blogs"),
+            loader: async () => fetch("https://electro-repair-server.vercel.app/blogs"),
          },
          {
             path: "/blogs/:id",
             element: <BlogDetails />,
-            loader: async ({ params }) => fetch(`http://localhost:5000/blogs/${params.id}`),
+            loader: async ({ params }) =>
+               fetch(`https://electro-repair-server.vercel.app/blogs/${params.id}`),
          },
          {
             path: "/login",

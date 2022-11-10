@@ -6,7 +6,7 @@ import BlogCard from "../../Blogs/BlogCard/BlogCard";
 const LatestBlogs = () => {
    const [blogs, setBlogs] = useState([]);
    useEffect(() => {
-      fetch("http://localhost:5000/blogs?size=3")
+      fetch("https://electro-repair-server.vercel.app/blogs?size=3")
          .then((res) => res.json())
          .then((data) => setBlogs(data));
    }, []);

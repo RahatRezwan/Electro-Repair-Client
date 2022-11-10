@@ -17,7 +17,9 @@ const Services = () => {
    useSetTitle("Services");
 
    useEffect(() => {
-      fetch(`http://localhost:5000/services?currentPage=${currentPage}&size=${perPageSize}`)
+      fetch(
+         `https://electro-repair-server.vercel.app/services?currentPage=${currentPage}&size=${perPageSize}`,
+      )
          .then((res) => res.json())
          .then((data) => {
             setServices(data.services);

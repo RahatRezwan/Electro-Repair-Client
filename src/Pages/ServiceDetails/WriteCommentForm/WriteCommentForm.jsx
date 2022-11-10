@@ -15,7 +15,7 @@ const WriteCommentForm = ({ title, id, setReviews, reviews }) => {
       const date = new Date();
       const review = { comment, serviceId, serviceName, userEmail, userName, userPhoto, date };
 
-      fetch("http://localhost:5000/reviews", {
+      fetch("https://electro-repair-server.vercel.app/reviews", {
          method: "POST",
          headers: {
             "Content-Type": "application/json",

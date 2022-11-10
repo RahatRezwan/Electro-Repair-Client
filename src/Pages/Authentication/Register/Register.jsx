@@ -38,7 +38,7 @@ const Register = () => {
             const user = result.user;
             const currentUser = { email: user.email };
             /* get jwt token */
-            fetch("http://localhost:5000/jwt", {
+            fetch("https://electro-repair-server.vercel.app/jwt", {
                method: "POST",
                headers: {
                   "content-type": "application/json",

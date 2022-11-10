@@ -9,7 +9,7 @@ const ReviewDeleteBtn = ({ _id, reviews, setReviews }) => {
    const handleDeleteComment = () => {
       setVisible(false);
 
-      fetch(`http://localhost:5000/reviews/${_id}`, {
+      fetch(`https://electro-repair-server.vercel.app/reviews/${_id}`, {
          method: "DELETE",
       })
          .then((res) => res.json())
