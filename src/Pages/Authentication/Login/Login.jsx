@@ -7,6 +7,7 @@ import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
 import { SpinnerContext } from "../../../contexts/HomeSpinner/HomeSpinner";
 import useSetTitle from "../../../hooks/useSetTitle";
 import SocialLogin from "../SocialLogin/SocialLogin";
+import { toast } from "react-toastify";
 
 const Login = () => {
    const { loginAUser } = useContext(AuthContext);
@@ -20,7 +21,6 @@ const Login = () => {
 
    /* handle login */
    const handleLogin = (event) => {
-      setSpin(true);
       setError(null);
       event.preventDefault();
       const form = event.target;
@@ -32,6 +32,7 @@ const Login = () => {
             const user = result.user;
             const currentUser = { email: user.email };
             form.reset();
+            setSpin(true);
 
             /* get jwt token */
             fetch("http://localhost:5000/jwt", {
@@ -46,16 +47,19 @@ const Login = () => {
                   console.log(data);
                   localStorage.setItem("electro_repair_token", data.token);
                   navigate(from, { replace: true });
+                  toast.success("Logged in successfully");
                   setSpin(false);
                });
          })
          .catch((error) => {
             if (error.code.slice(5) === "user-not-found") {
                setError("User Not Found");
+               toast.error("User Not Found");
                return;
             }
             if (error.code.slice(5) === "wrong-password") {
                setError("Your password is incorrect");
+               toast.error("Password is incorrect");
                return;
             }
          });

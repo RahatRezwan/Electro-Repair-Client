@@ -8,6 +8,7 @@ import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
 import { SpinnerContext } from "../../../contexts/HomeSpinner/HomeSpinner";
 import useSetTitle from "../../../hooks/useSetTitle";
 import SocialLogin from "../SocialLogin/SocialLogin";
+import { toast } from "react-toastify";
 
 const Register = () => {
    const { createANewUser, updateUserProfile } = useContext(AuthContext);
@@ -19,7 +20,6 @@ const Register = () => {
    /* handle Registration */
    const handleRegister = (event) => {
       setError(null);
-      setSpin(true);
       event.preventDefault();
       const form = event.target;
       const fullName = form.name.value;
@@ -50,6 +50,7 @@ const Register = () => {
                   console.log(data);
                   localStorage.setItem("electro_repair_token", data.token);
                   handleUpdateProfile(fullName, photoUrl);
+                  setSpin(true);
                   form.reset();
                });
          })
@@ -62,6 +63,7 @@ const Register = () => {
       updateUserProfile(userInfo)
          .then(() => {
             navigate("/");
+            toast.success("Account Created Successfully");
             setSpin(false);
          })
          .catch((e) => console.log(e));
