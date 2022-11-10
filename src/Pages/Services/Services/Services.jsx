@@ -2,10 +2,11 @@ import React, { useEffect, useState } from "react";
 import { Button, Label, Select } from "flowbite-react";
 import useSetTitle from "../../../hooks/useSetTitle";
 import ServiceCard from "../../Shared/ServiceCard/ServiceCard";
+import Spinner from "../../Shared/Spinner/Spinner";
 
 const Services = () => {
    const [services, setServices] = useState([]);
-
+   const [spin, setSpin] = useState(true);
    /* pagination */
    const [count, setCount] = useState(0);
    const [perPageSize, setPerPageSize] = useState(3);
@@ -21,8 +22,13 @@ const Services = () => {
          .then((data) => {
             setServices(data.services);
             setCount(data.count);
+            setSpin(false);
          });
    }, [currentPage, perPageSize]);
+
+   if (spin) {
+      return <Spinner />;
+   }
 
    return (
       <div className="max-w-[1320px] w-[95%] mx-auto my-5">

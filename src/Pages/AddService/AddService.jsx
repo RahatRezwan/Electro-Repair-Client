@@ -2,6 +2,7 @@ import { Button, Label, Textarea, TextInput } from "flowbite-react";
 import React, { useContext } from "react";
 import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
 import useSetTitle from "../../hooks/useSetTitle";
+import { toast } from "react-toastify";
 
 const AddService = () => {
    const { user } = useContext(AuthContext);
@@ -30,8 +31,8 @@ const AddService = () => {
          .then((res) => res.json())
          .then((data) => {
             if (data.acknowledged) {
+               toast.success("Service Added Successfully");
                form.reset();
-               console.log(data);
             }
          });
    };

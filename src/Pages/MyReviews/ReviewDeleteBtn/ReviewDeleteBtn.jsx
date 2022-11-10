@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { FaTrashAlt } from "react-icons/fa";
 import { Modal } from "flowbite-react";
+import { toast } from "react-toastify";
 
 const ReviewDeleteBtn = ({ _id, reviews, setReviews }) => {
    const [visible, setVisible] = useState(false);
@@ -15,8 +16,8 @@ const ReviewDeleteBtn = ({ _id, reviews, setReviews }) => {
          .then((data) => {
             if (data.deletedCount > 0) {
                const restComments = reviews.filter((cmt) => cmt._id !== _id);
+               toast.success("comment deleted successfully");
                setReviews(restComments);
-               alert("comment deleted successfully");
             }
          });
    };

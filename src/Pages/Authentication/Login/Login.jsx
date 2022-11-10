@@ -4,11 +4,13 @@ import { GoMail, GoKey } from "react-icons/go";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import loginImg from "../../../assests/loginpage.png";
 import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
+import { SpinnerContext } from "../../../contexts/HomeSpinner/HomeSpinner";
 import useSetTitle from "../../../hooks/useSetTitle";
 import SocialLogin from "../SocialLogin/SocialLogin";
 
 const Login = () => {
    const { loginAUser } = useContext(AuthContext);
+   const { setSpin } = useContext(SpinnerContext);
    const [error, setError] = useState(null);
    useSetTitle("Login");
 
@@ -18,6 +20,7 @@ const Login = () => {
 
    /* handle login */
    const handleLogin = (event) => {
+      setSpin(true);
       setError(null);
       event.preventDefault();
       const form = event.target;
@@ -43,6 +46,7 @@ const Login = () => {
                   console.log(data);
                   localStorage.setItem("electro_repair_token", data.token);
                   navigate(from, { replace: true });
+                  setSpin(false);
                });
          })
          .catch((error) => {

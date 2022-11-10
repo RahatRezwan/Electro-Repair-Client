@@ -1,6 +1,7 @@
 import { Button, Modal, Textarea } from "flowbite-react";
 import React, { useState } from "react";
 import { FaEdit } from "react-icons/fa";
+import { toast } from "react-toastify";
 
 const ReviewEditBtn = ({ _id, comment, reviews, setReviews }) => {
    const [visible, setVisible] = useState(false);
@@ -23,6 +24,7 @@ const ReviewEditBtn = ({ _id, comment, reviews, setReviews }) => {
                const editedComment = reviews.find((cmt) => cmt._id === _id);
                editedComment.comment = newComment;
                const newCommentsArray = [...restComments, editedComment];
+               toast.success("Review Updated Successfully");
                setReviews(newCommentsArray);
             }
          });

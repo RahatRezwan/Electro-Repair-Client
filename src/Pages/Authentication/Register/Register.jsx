@@ -5,11 +5,13 @@ import { GoKey, GoMail } from "react-icons/go";
 import { Link, useNavigate } from "react-router-dom";
 import loginImg from "../../../assests/loginpage.png";
 import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
+import { SpinnerContext } from "../../../contexts/HomeSpinner/HomeSpinner";
 import useSetTitle from "../../../hooks/useSetTitle";
 import SocialLogin from "../SocialLogin/SocialLogin";
 
 const Register = () => {
    const { createANewUser, updateUserProfile } = useContext(AuthContext);
+   const { setSpin } = useContext(SpinnerContext);
    const [error, setError] = useState(null);
    useSetTitle("Register");
 
@@ -17,6 +19,7 @@ const Register = () => {
    /* handle Registration */
    const handleRegister = (event) => {
       setError(null);
+      setSpin(true);
       event.preventDefault();
       const form = event.target;
       const fullName = form.name.value;
@@ -59,6 +62,7 @@ const Register = () => {
       updateUserProfile(userInfo)
          .then(() => {
             navigate("/");
+            setSpin(false);
          })
          .catch((e) => console.log(e));
    };
