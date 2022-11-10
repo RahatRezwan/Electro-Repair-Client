@@ -1,11 +1,13 @@
 import { Avatar } from "flowbite-react";
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
-import { FaEdit, FaTrashAlt } from "react-icons/fa";
+import ReviewEditBtn from "./ReviewEditBtn/ReviewEditBtn";
+import ReviewDeleteBtn from "./ReviewDeleteBtn/ReviewDeleteBtn";
 
 const MyReviews = () => {
    const [reviews, setReviews] = useState([]);
    const { user } = useContext(AuthContext);
+   window.scroll(0, 0);
    useEffect(() => {
       fetch(`http://localhost:5000/reviews?email=${user?.email}`)
          .then((res) => res.json())
@@ -13,8 +15,10 @@ const MyReviews = () => {
             setReviews(data);
          });
    }, [user?.email]);
+
    return (
-      <div className="max-w-[1320px] mx-auto min-h-screen py-16">
+      <div className="max-w-[1024px] mx-auto min-h-screen py-14">
+         <h1 className="text-2xl font-bold mb-4">All of my reviews</h1>
          {reviews.map((review) => (
             <div
                key={review._id}
@@ -31,8 +35,13 @@ const MyReviews = () => {
                   </div>
                </div>
                <div className="flex items-center gap-3">
-                  <FaEdit className="w-6 h-6 text-blue-600" />
-                  <FaTrashAlt className="w-6 h-6 text-red-600" />
+                  <ReviewEditBtn
+                     comment={review.comment}
+                     _id={review._id}
+                     reviews={reviews}
+                     setReviews={setReviews}
+                  />
+                  <ReviewDeleteBtn _id={review._id} reviews={reviews} setReviews={setReviews} />
                </div>
             </div>
          ))}

@@ -11,7 +11,6 @@ import {
    Services,
 } from "../../Pages";
 import PrivateRoutes from "../PrivateRoute/PrivateRoutes";
-
 export const routes = createBrowserRouter([
    {
       path: "/",
