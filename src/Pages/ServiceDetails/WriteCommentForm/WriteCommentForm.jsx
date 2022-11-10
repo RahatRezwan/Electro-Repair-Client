@@ -1,6 +1,7 @@
 import { Button, Label, Textarea } from "flowbite-react";
 import React, { useContext } from "react";
 import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
+import { toast } from "react-toastify";
 
 const WriteCommentForm = ({ title, id, setReviews, reviews }) => {
    const { user } = useContext(AuthContext);
@@ -25,7 +26,7 @@ const WriteCommentForm = ({ title, id, setReviews, reviews }) => {
          .then((res) => res.json())
          .then((data) => {
             if (data.acknowledged) {
-               alert("successfully added review");
+               toast.success("successfully added review");
                event.target.reset();
                const newReviewArray = [review, ...reviews];
                setReviews(newReviewArray);

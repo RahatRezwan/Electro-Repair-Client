@@ -4,12 +4,16 @@ import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
 import ReviewEditBtn from "./ReviewEditBtn/ReviewEditBtn";
 import ReviewDeleteBtn from "./ReviewDeleteBtn/ReviewDeleteBtn";
 import useSetTitle from "../../hooks/useSetTitle";
+import Spinner from "../Shared/Spinner/Spinner";
 
 const MyReviews = () => {
    useSetTitle("My Reviews");
    const [reviews, setReviews] = useState([]);
+   const [spin, setSpin] = useState(true);
    const { user, logoutAUser } = useContext(AuthContext);
+
    window.scroll(0, 0);
+
    useEffect(() => {
       fetch(`https://electro-repair-server.vercel.app/reviews-by-email?email=${user?.email}`, {
          headers: {
@@ -24,8 +28,13 @@ const MyReviews = () => {
          })
          .then((data) => {
             setReviews(data);
+            setSpin(false);
          });
    }, [user?.email, logoutAUser]);
+
+   if (spin) {
+      return <Spinner />;
+   }
 
    if (reviews.length === 0) {
       return (
